@@ -1,4 +1,5 @@
 #define BUFFER_SIZE 256
+#define TAB_SIZE	32
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -15,6 +16,7 @@ int main() {
 
 	char mem_total[BUFFER_SIZE];
 	char mem_free[BUFFER_SIZE];
+	char part_size[TAB_SIZE][BUFFER_SIZE];
 
 	char buffer[BUFFER_SIZE];
 
@@ -66,14 +68,23 @@ int main() {
 	if (part == NULL)
 	{printf("Impossible d'ouvrir le fichier");}
 	else {
+		fgets(buffer,BUFFER_SIZE,part); // Lecture de la première ligne dans le vide car inutile
+		int col = 0;
 		while(fgets(buffer,BUFFER_SIZE,part) != NULL)
 		{
+			int line = 0;
 			char *p = strtok(buffer, split); // Découpage du buffer par le limiteur " "
 			while (p != NULL)
 			{
-				printf("%s\n", p);
+				line ++;
 				p = strtok(NULL, split);
+				if (line > 3)
+				{
+					printf("%s\n", p);
+				}
+				
 			}
+			col ++;
 		}
 	}
 
