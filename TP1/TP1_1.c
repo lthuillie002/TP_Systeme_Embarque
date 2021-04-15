@@ -104,10 +104,17 @@ int main() {
 	}
 
 	/* Affichage des résultats */
+	printf("--------------------\n      Info CPU      \n--------------------\n");
 	printf("\n%s\n%s\n%s\n%s\n", model_name, frequency, cache_size, adress_size);
+
+	printf("--------------------\n    Info Mémoire    \n--------------------\n");
 	printf("%s\n%s\n", mem_total, mem_free);
+
+	printf("--------------------\n   Info Paritions   \n--------------------\n");
 	int i = 0;
-	printf("Partitions : \n");
+	printf("\nPartitions : \n");
+
+	printf("--------------------\n    Info Systeme    \n--------------------\n");
 	for(i = 2; i < line; i++)
 		printf("%s\t%s Mo\n", part_name[i], part_size[i]);
 	printf("Version du noyau installé :\n\t%s\n", version);
