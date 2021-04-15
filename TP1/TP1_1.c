@@ -112,11 +112,10 @@ int main() {
 
 	printf("--------------------\n   Info Paritions   \n--------------------\n");
 	int i = 0;
-	printf("\nPartitions : \n");
-
-	printf("--------------------\n    Info Systeme    \n--------------------\n");
 	for(i = 2; i < line; i++)
 		printf("%s\t%s Mo\n", part_name[i], part_size[i]);
+
+	printf("--------------------\n    Info Systeme    \n--------------------\n");
 	printf("Version du noyau installé :\n\t%s\n", version);
 
 	return 0;
