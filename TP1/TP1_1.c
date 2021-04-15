@@ -76,12 +76,12 @@ int main() {
 			while (p != NULL)
 			{
 				line ++;
-				p = strtok(NULL, split);
 				if (line > 3 && col > 2)
 				{
 					printf("%s\n", p);
 				}
-				
+
+				p = strtok(NULL, split);
 			}
 			col ++;
 		}
