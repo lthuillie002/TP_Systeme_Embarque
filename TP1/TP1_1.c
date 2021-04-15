@@ -81,13 +81,13 @@ int main() {
 				col ++;
 				if (col == 3 && line > 1)
                 {
-					strcpy(part_size[col], p);
-					printf("size : %s\n", part_size[col]);
+					strcpy(part_size[line], p);
+					printf("size : %s\n", part_size[line]);
                 }
 				if (col == 4 && line > 1)
                 {
-					strcpy(part_name[col], p);
-					printf("Name : %s\n", part_name[col]);
+					strcpy(part_name[line], p);
+					printf("Name : %s\n", part_name[linel]);
                 }
 
 				p = strtok(NULL, split);
@@ -100,8 +100,8 @@ int main() {
 	printf("\n%s\n%s\n%s\n%s\n", model_name, frequency, cache_size, adress_size);
 	printf("%s\n%s\n", mem_total, mem_free);
 	int i = 0;
-	for(i = 0; i < col; i++)
-		printf("%s\t%s", part_name[col], part_size[col]);
+	for(i = 0; i < line-1; i++)
+		printf("%s\t%s", part_name[i], part_size[i]);
 
 	return 0;
 }
