@@ -1,5 +1,6 @@
 #define BUFFER_SIZE 128
 #include <stdio.h>
+#include <unistd.h>
 #include <stdlib.h>
 #include <sys/resource.h>
 #include <string.h>
