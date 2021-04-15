@@ -3,14 +3,11 @@
 #include <stdlib.h>
 #include <string.h>
 int main() {
-	FILE* cpu = NULL;
-	FILE* mem = NULL;
-	FILE* part = NULL;
+	FILE* cpu = NULL;	//Stockage des informations système du CPU
+	FILE* mem = NULL;	//Stockage des informations système de la mémoire
+	FILE* part = NULL;	//Stockage des informations système des partitions
 
-	cpu = fopen("/proc/cpuinfo", "r");
-	mem = fopen("/proc/meminfo", "r");
-	part = fopen("/proc/partitions", "r");
-
+	/* Déclaration des variables*/
 	char model_name[BUFFER_SIZE];
 	char frequency[BUFFER_SIZE];
 	char cache_size[BUFFER_SIZE];
@@ -20,13 +17,20 @@ int main() {
 	char mem_free[BUFFER_SIZE];
 
 	char buffer[BUFFER_SIZE];
+
+	/* Ouverture des fichiers */
+	cpu = fopen("/proc/cpuinfo", "r");
+	mem = fopen("/proc/meminfo", "r");
+	part = fopen("/proc/partitions", "r");
+
+	/* Récupération des informations du CPU */
 	if (cpu == NULL)
 	{	// Erreur
 		printf("Impossible d'ouvrir le fichier");
 	}
 	else
 	{	// Fichier ok
-		while(fgets(buffer,BUFFER_SIZE,cpu) != NULL)
+		while(fgets(buffer,BUFFER_SIZE,cpu) != NULL)	// On vient lire le fichier ligne par ligne
 		{
 			if (strstr(buffer, "model name") != NULL)
 				strcpy(model_name, buffer);				
@@ -39,8 +43,10 @@ int main() {
 		}    		
 			
 	}
-        if (mem == NULL)
-        {       // Erreur
+
+	/* Récupération des informations de la mémoire */
+    if (mem == NULL)
+    {       // Erreur
                 printf("Impossible d'ouvrir le fichier");
 	}
 	else
@@ -53,6 +59,8 @@ int main() {
 				strcpy(mem_free, buffer);
 		}
 	}
+
+	/* Récupération des informations sur les partitions */
 	if (part == NULL)
 	{printf("Impossible d'ouvrir le fichier");}
 	else {
@@ -62,10 +70,9 @@ int main() {
 		}
 	}
 
-
+	/* Affichage des résultats */
 	printf("\n%s\n%s\n%s\n%s\n", model_name, frequency, cache_size, adress_size);
 	printf("%s\n%s\n", mem_total, mem_free);
-
 
 	return 0;
 }
