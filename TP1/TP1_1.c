@@ -87,7 +87,7 @@ int main() {
 				if (col == 4 && line > 1)
                 {
 					strcpy(part_name[line], p);
-					printf("Name : %s\n", part_name[linel]);
+					printf("Name : %s\n", part_name[line]);
                 }
 
 				p = strtok(NULL, split);
