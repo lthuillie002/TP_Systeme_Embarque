@@ -101,7 +101,7 @@ int main() {
 	printf("%s\n%s\n", mem_total, mem_free);
 	int i = 0;
 	printf("Partitions : \n");
-	for(i = 0; i < line-1; i++)
+	for(i = 2; i < line; i++)
 		printf("%s\t%s Mo\n", part_name[i], part_size[i]);
 
 	return 0;
