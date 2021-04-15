@@ -17,10 +17,13 @@ int main() {
 	char mem_total[BUFFER_SIZE];
 	char mem_free[BUFFER_SIZE];
 	char part_size[TAB_SIZE][BUFFER_SIZE];
+	char part_name[TAB_SIZE][BUFFER_SIZE];
 
 	char buffer[BUFFER_SIZE];
 
 	char split[] = " "; 
+	int col = 0;
+	int line = 0;
 
 	/* Ouverture des fichiers */
 	cpu = fopen("/proc/cpuinfo", "r");
@@ -68,28 +71,31 @@ int main() {
 	if (part == NULL)
 	{printf("Impossible d'ouvrir le fichier");}
 	else {
-		int col = 0;
+		line = 0;
 		while(fgets(buffer,BUFFER_SIZE,part) != NULL)
 		{
-			int line = 0;
+			col = 0;
 			char *p = strtok(buffer, split); // Découpage du buffer par le limiteur " "
 			while (p != NULL)
 			{
-				line ++;
-				if (line > 3 && col > 2)
-				{
-					printf("%s\n", p);
-				}
+				col ++;
+				if (col == 2 && line > 2)
+					strcpy(part_size[col], p);
+				if (col == 3 && line > 3)
+					strcpy(part_name[col], p);
 
 				p = strtok(NULL, split);
 			}
-			col ++;
+			line ++;
 		}
 	}
 
 	/* Affichage des résultats */
 	printf("\n%s\n%s\n%s\n%s\n", model_name, frequency, cache_size, adress_size);
 	printf("%s\n%s\n", mem_total, mem_free);
+	int i = 0;
+	for(i = 0; i < col; i++)
+		printf("%s\t%s", part_name[col], part_size[col]);
 
 	return 0;
 }
