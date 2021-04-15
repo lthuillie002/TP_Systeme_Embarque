@@ -100,8 +100,9 @@ int main() {
 	printf("\n%s\n%s\n%s\n%s\n", model_name, frequency, cache_size, adress_size);
 	printf("%s\n%s\n", mem_total, mem_free);
 	int i = 0;
+	printf("Partitions : \n");
 	for(i = 0; i < line-1; i++)
-		printf("%s\t%s", part_name[i], part_size[i]);
+		printf("%s\t%s Mo\n", part_name[i], part_size[i]);
 
 	return 0;
 }
