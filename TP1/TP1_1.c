@@ -80,9 +80,15 @@ int main() {
 			{
 				col ++;
 				if (col == 2 && line > 2)
+                {
+                    printf("size : %s\n", p);
 					strcpy(part_size[col], p);
+                }
 				if (col == 3 && line > 3)
+                {
+                    printf("Name : %s\n", p);
 					strcpy(part_name[col], p);
+                }
 
 				p = strtok(NULL, split);
 			}
