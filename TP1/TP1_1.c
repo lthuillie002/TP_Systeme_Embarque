@@ -98,7 +98,7 @@ int main() {
 	{printf("Impossible d'ouvrir le fichier");}
 	else {
 		fgets(buffer,BUFFER_SIZE,vers) != NULL;
-		char split_2 = "(";
+		char split_2[] = "(";
 		char *p = strtok(buffer, split_2);
 		strcpy(version, p);
 	}
