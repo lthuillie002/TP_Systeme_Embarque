@@ -18,6 +18,8 @@ int main() {
 
 	char buffer[BUFFER_SIZE];
 
+	char split[] = " "; 
+
 	/* Ouverture des fichiers */
 	cpu = fopen("/proc/cpuinfo", "r");
 	mem = fopen("/proc/meminfo", "r");
@@ -66,7 +68,12 @@ int main() {
 	else {
 		while(fgets(buffer,BUFFER_SIZE,part) != NULL)
 		{
-			//TO DO
+			char *p = strtok(buffer, split); // Découpage du buffer par le limiteur " "
+			while (p != NULL)
+			{
+				printf("%s\n", p);
+				p = strtok(NULL, split);
+			}
 		}
 	}
 
