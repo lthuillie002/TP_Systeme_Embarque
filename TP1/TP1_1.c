@@ -68,7 +68,6 @@ int main() {
 	if (part == NULL)
 	{printf("Impossible d'ouvrir le fichier");}
 	else {
-		fgets(buffer,BUFFER_SIZE,part); // Lecture de la première ligne dans le vide car inutile
 		int col = 0;
 		while(fgets(buffer,BUFFER_SIZE,part) != NULL)
 		{
@@ -78,7 +77,7 @@ int main() {
 			{
 				line ++;
 				p = strtok(NULL, split);
-				if (line > 3)
+				if (line > 3 && col > 2)
 				{
 					printf("%s\n", p);
 				}
