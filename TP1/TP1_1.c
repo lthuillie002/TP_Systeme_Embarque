@@ -79,12 +79,12 @@ int main() {
 			while (p != NULL)
 			{
 				col ++;
-				if (col == 3 && line > 2)
+				if (col == 3 && line > 1)
                 {
                     printf("size : %s\n", p);
 					strcpy(part_size[col], p);
                 }
-				if (col == 4 && line > 3)
+				if (col == 4 && line > 1)
                 {
                     printf("Name : %s\n", p);
 					strcpy(part_name[col], p);
