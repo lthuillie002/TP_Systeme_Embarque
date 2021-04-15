@@ -81,13 +81,13 @@ int main() {
 				col ++;
 				if (col == 3 && line > 2)
                 {
-                    printf("size : %s\n", p);
 					strcpy(part_size[col], p);
+					printf("size : %s\n", part_size[col]);
                 }
 				if (col == 4 && line > 3)
                 {
-                    printf("Name : %s\n", p);
 					strcpy(part_name[col], p);
+					printf("Name : %s\n", part_name[col]);
                 }
 
 				p = strtok(NULL, split);
