@@ -76,7 +76,7 @@ int main() {
 			while (p != NULL)
 			{
 				line ++;
-				if (line > 3 && col > 2)
+				if (line > 2 && col > 2)
 				{
 					printf("%s\n", p);
 				}
