@@ -8,8 +8,8 @@
 
 int main() {
 	int which = PRIO_PROCESS;	// Parametre de la fonction get
-	id_t pid;			// Stockage du pid du processus
-	int ret_A;			// Stockage du getpriority
+	id_t pid;					// Stockage du pid du processus
+	int ret_A;					// Stockage du getpriority
 	
 	FILE* stat = NULL;
 	
@@ -18,6 +18,7 @@ int main() {
 	pid = getpid();
 	ret_A = getpriority(which, pid);
 
+	/* Ouverture du fichier */
 	stat =  fopen("/proc/self/sched", "r");
 	char buffer[BUFFER_SIZE];
 	if (stat == NULL) {printf("Impossible d'ouvrir le fichier");}
@@ -28,12 +29,14 @@ int main() {
 				strcpy(ret_B, buffer);
 		}
 	}
-	fclose(stat);
+	fclose(stat);	// Fermeture du fichier
 
+	/* Affichage des résultats */
 	printf("La priorite de ce processus est : %d\n%s\n", ret_A, ret_B);
 
-	setpriority(which, pid, 4);
+	setpriority(which, pid, 4);	// Changement de priorité
 
+	/* Affichage des résultats */
 	ret_A = getpriority(which, pid);
 	printf("La priorite est maintenant de : %d\n", ret_A);
 
