@@ -22,20 +22,17 @@ static int nb_total_mesures = 50000;
 void handler_signal(int inutilise)
 {
 	// fonction à exécuter à chaque expiration du timer
-	// *** à compléter --> incrémetner le nombre de mesures ici, nb_mesures, quelque part
-
-
+	
 	struct timespec heure;
 	static struct timespec precedente = {0,0};
 
 	nb_mesures ++;
 	printf("%d\n", nb_mesures);
-        // *** a compléter --> mesurer le temps
+        // mesure du temps
 	clock_gettime (CLOCK_REALTIME, &heure);
 
 	if (precedente.tv_sec > 0) {
-        // *** à compléter --> mesure[nb_mesures] doit récupérer la dif$
-        // ATTENTION ici à considérer la partie entière et fractionnair$
+        // mesure[nb_mesures] récupère la dif
         }
         precedente = heure;
         if (nb_mesures == nb_total_mesures)
@@ -55,39 +52,39 @@ int main(int argc, char * argv[])
 		exit(EXIT_FAILURE);
 	}
 
-	// nombre de mesues réalisées en 5 secondes (par exemple)
+	// nombre de mesues réalisées en 5 secondes
 	nb_total_mesures = 5000000 / periode; // 5 secondes
 
-	// Configurer le timer
+	// Configuration du timer
 	// à la reception du signal SIGRTMIN, executer la fonction handler_signal()
 	signal(SIGRTMIN, handler_signal);
 
-	//*** a compléter --> nous souhaitons être notifié par signal
+	// Notification du signal
 	event.sigev_notify = SIGEV_SIGNAL;
 	event.sigev_signo  = SIG;
 
 	periode = periode * 1000;  // en nanosec
 
-	//*** à compléter --> définir la partie entière et fractionnaire
+	// Définition de la partie entière et fractionnaire
 	spec.it_interval.tv_sec  = periode / 1000000000;
 	spec.it_interval.tv_nsec = periode % 1000000000;
 	spec.it_value = spec.it_interval;
 
 
-	// *** à compléter --> allouer le timer
+	// allocation du timer
 	if (timer_create(CLOCK_REALTIME, &event, &timer) != 0) {
 		perror("timer_create");
 		exit(EXIT_FAILURE);
 	}
 
-	// à compléter --> programmer le timer
+	// Programmation du timer
 	if (timer_settime(timer, 0, &spec, NULL) != 0) {
 		perror("timer_settime");
 		exit(EXIT_FAILURE);
 	}
 
 
-	// Attendre le dernier signal
+	// Attente du dernier signal
 	while (nb_mesures < nb_total_mesures)
 		pause();
 
